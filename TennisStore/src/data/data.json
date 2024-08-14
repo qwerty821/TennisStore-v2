@@ -1,0 +1,8 @@
+{
+    "categories":  [
+        {"name" :"Tennis Rackets" ,"data" : ["Babolat", "Wilson", "Head", "Tecnifibre"]},
+        {"name" : "Tennis Balls",  "data" : []},
+        {"name" : "Grips", "data": ["Overgrips", "Replacement Grips"]},
+        {"name" : "Brands", "data" : ["Babolat", "Wilson", "Head", "Tecnifibre", "Nike", "Adidas"]}
+    ] 
+}
