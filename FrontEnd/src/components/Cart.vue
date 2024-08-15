@@ -5,7 +5,7 @@
         <div class="col-12">
           <div class="card card-registration card-registration-2" style="border-radius: 15px;">
             <div class="card-body p-0">
-              <div class="row g-0">
+				<div class="row g-0">
                 <div class="col-lg-8">
                     <div class="p-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
@@ -15,8 +15,9 @@
                     <hr class="my-4">
                     <!-- Product -->
 
-					<ChartViewProduct v-for="item in cart.items" ></ChartViewProduct>
-					 
+						<!-- <ChartViewProduct :product="items.value."></ChartViewProduct> -->
+						<ChartViewProduct v-for="item in items"  :key="item.rId" :product="item" ></ChartViewProduct>
+ 
 					<!--  -->
                     <hr class="my-4">
   
@@ -77,6 +78,7 @@
   </section>
 </template>
 <script setup>
+import { fetchData } from '@/apiServices';
 import ChartViewProduct from './Products/ChartViewProduct.vue';
 import { cartStore } from '@/stores/cart';
 import { onMounted, ref } from 'vue'
@@ -84,39 +86,47 @@ import { reactive, computed } from 'vue'
 
 const cart = cartStore();
 
-onMounted(() => {
-        
+const items = ref([]);
+
+
+onMounted(async () => {
+	for (let [key, val] of cart.items) {
+		const response = await fetchData('https://localhost:44388/api/Racket/get', { 'id': key });
+		console.log("key" + key);
+		items.value.push(response);
+	}
+ 
 });
 
 
 </script>
 <style scoped>
 @media (min-width: 1025px) {
-    .h-custom {
-        height: 100vh !important;
-    }
+	.h-custom {
+		height: 100vh !important;
+	}
 }
 
 .card-registration .select-input.form-control[readonly]:not([disabled]) {
-    font-size: 1rem;
-    line-height: 2.15;
-    padding-left: .75em;
-    padding-right: .75em;
+	font-size: 1rem;
+	line-height: 2.15;
+	padding-left: .75em;
+	padding-right: .75em;
 }
 
 .card-registration .select-arrow {
-    top: 13px;
+	top: 13px;
 }
 
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 /* Pentru browserele Firefox */
 input[type="number"] {
-    appearance: textfield;
+	appearance: textfield;
 }
 </style>

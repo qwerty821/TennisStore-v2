@@ -1,14 +1,14 @@
 <template lang="">
-    
+	<slot></slot>
     <div class="row mb-4 d-flex justify-content-between align-items-center">
         <div class="col-md-2 col-lg-2 col-xl-2">
           <img
-            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img5.webp"
+            :src="product.rImageUrl" 
             class="img-fluid rounded-3" alt="Cotton T-shirt">
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3">
-          <h6 class="text-muted">Shirt</h6>
-          <h6 class="mb-0">Cotton T-shirt</h6>
+          <!-- <h6 class="text-muted">{{product.rBrand}}</h6> -->
+          <h6 class="mb-0">{{product.rName}}</h6>
         </div>
         <div class="col-md-3 col-lg-3 col-xl-3 d-flex">
           <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2"
@@ -25,7 +25,7 @@
           </button>
         </div>
         <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-          <h6 class="mb-0">€ 44.00</h6>
+          <h6 class="mb-0">{{ product.rPrice }} $</h6>
         </div>
         <div class="col-md-1 col-lg-1 col-xl-1 text-end">
           <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
@@ -36,13 +36,19 @@
 </template>
 <script>
 export default {
-    props: {
-        product: {
-            type: Object
-        }
-    }
+	props: {
+		product: {
+			type: Object,
+			required: true
+		}
+	},
+
+	mounted () {
+		console.log("prod mounted");
+		console.log("props:" + this.product);
+	}
 }
 </script>
 <style lang="">
-    
+
 </style>
