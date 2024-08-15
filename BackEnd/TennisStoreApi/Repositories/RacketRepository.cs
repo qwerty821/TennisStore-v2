@@ -22,6 +22,7 @@ namespace OnlineStore.Repositories
 
         public Racket? Get(Guid id)
         {
+            string s_id = id.ToString().ToUpper();
             var x =  _context.Rackets.Find(id);
             Console.WriteLine(x == null ? "null" : x.RName);
             
