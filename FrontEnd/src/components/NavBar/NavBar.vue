@@ -21,7 +21,7 @@
 							
 							<li class="nav-item">
 								<RouterLink class="nav-link" to="/cart">
-									<i class="fa fa-shopping-cart"></i> {{ cart.count }}
+									<i class="fa fa-shopping-cart"></i> {{ cartCount }}
 								</RouterLink>
 							</li>
 							<li class="nav-item">
@@ -63,7 +63,7 @@
 							<RouterLink class="nav-link" to="/rackets">Rackets</RouterLink>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">New Arrivals</a>
+							<RouterLink class="nav-link" to="/test-page">Test Page</RouterLink>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Featured Products</a>
@@ -119,6 +119,9 @@ export default {
 				...category,
 				url: this.generateLink(category.name)
 			}));
+		},
+		cartCount() {
+			return this.cart.quantity();
 		}
 	},
 	methods: {

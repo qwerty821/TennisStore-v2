@@ -2,14 +2,14 @@
 <div class="wrapper" :id="product.id">
   <div class="container" >
     <div class="top" :style="backgroundStyle" ></div>
-    <div class="bottom" :class="{'clicked': isBought(product.id)}">
+    <div class="bottom" :class="{'clicked': isInCart(product.id)}">
       <div class="left">
         <div class="details">
-		  <span class="r-brand">{{product.brand}} </span>
+		  <!-- <span class="r-brand">{{product.brand}} </span> -->
           <span class="r-name" >{{product.name}} </span>
           <span class="r-price">{{product.price}}</span>
         </div>
-        <div class="buy"  @click.preventDefault="addToCart(product.id)" ><i class="material-icons">add_shopping_cart</i></div>
+        <div class="buy"  @click.preventDefault="addToCart" ><i class="material-icons">add_shopping_cart</i></div>
       </div>
       <div class="right">
         <div class="done"><i class="material-icons">done</i></div>
@@ -94,12 +94,12 @@ export default {
 	},
 
 	methods: {
-		isBought(id) {
-			return  (this.cart.items.has(id));
+		isInCart(id) {
+			return  (this.cart.items[id] !== undefined);
 		},
 
-		addToCart(id) {
-			this.cart.addItem(id);
+		addToCart() {
+			this.cart.addItem(this.product);
 		}, 
 
 		removeFromCart(id) {

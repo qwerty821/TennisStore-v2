@@ -6,6 +6,8 @@ import Cart from "./components/Cart.vue";
 import { cartStore } from "./stores/cart";
 import Home from "./components/Home.vue";
 import Rackets from "./components/Rackets/Rackets.vue";
+import TestPage from "./components/TestPage.vue";
+
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -13,8 +15,7 @@ const router = createRouter({
         {path:'/', component: Home },
         {path:'/cart', component: Cart },
         {path:'/rackets', component: Rackets },
-        
-        
+        {path: '/test-page', component: TestPage}
         
     ]
 });
