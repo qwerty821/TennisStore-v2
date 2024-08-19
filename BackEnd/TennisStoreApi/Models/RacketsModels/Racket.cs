@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,15 +10,20 @@ namespace OnlineStore.Models.RacketsModels;
 
 public partial class Racket
 {
-    public Guid RId { get; set; }
+    [BindProperty(Name = "id")]
+    public Guid Id { get; set; }
 
-    public string RName { get; set; } = null!;
+    [BindProperty(Name = "name")]
+    public string Name { get; set; } = null!;
 
-    public Guid? RBrand { get; set; }
+    [BindProperty(Name = "brand")]
+    public Guid? Brand { get; set; }
 
-    public decimal RPrice { get; set; }
+    [BindProperty(Name = "price")]
+    public decimal Price { get; set; }
 
-    public string RImageUrl { get; set; } = null!;
+    [BindProperty(Name = "imageUrl")]
+    public string ImageUrl { get; set; } = null!;
 
     [JsonIgnore]
     public virtual Brand? RBrandNavigation { get; set; }

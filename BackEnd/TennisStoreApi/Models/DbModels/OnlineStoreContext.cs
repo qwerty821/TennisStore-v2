@@ -59,26 +59,26 @@ public partial class OnlineStoreContext : DbContext
 
         modelBuilder.Entity<Racket>(entity =>
         {
-            entity.HasKey(e => e.RId).HasName("PK_Racket_Id");
+            entity.HasKey(e => e.Id).HasName("PK_Racket_Id");
 
-            entity.Property(e => e.RId)
+            entity.Property(e => e.Id)
                 .ValueGeneratedNever()
                 .HasColumnName("r_id");
-            entity.Property(e => e.RBrand).HasColumnName("r_brand");
-            entity.Property(e => e.RImageUrl)
+            entity.Property(e => e.Brand).HasColumnName("r_brand");
+            entity.Property(e => e.ImageUrl)
                 .HasMaxLength(500)
                 .IsUnicode(false)
                 .HasColumnName("r_image_url");
-            entity.Property(e => e.RName)
+            entity.Property(e => e.Name)
                 .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("r_name");
-            entity.Property(e => e.RPrice)
+            entity.Property(e => e.Price)
                 .HasColumnType("decimal(5, 2)")
                 .HasColumnName("r_price");
 
             entity.HasOne(d => d.RBrandNavigation).WithMany(p => p.Rackets)
-                .HasForeignKey(d => d.RBrand)
+                .HasForeignKey(d => d.Brand)
                 .HasConstraintName("FK_Brands_To_Rackets");
         });
 

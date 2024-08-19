@@ -4,7 +4,6 @@ using OnlineStore.Abstractions;
 using OnlineStore.Contracts;
 using OnlineStore.Models.DbModels;
 using OnlineStore.Models.RacketsModels;
-using OnlineStore.Models.RacketsModels;
 using System.IO;
 using TennisStoreApi.Models.DbModels;
 
@@ -19,13 +18,16 @@ namespace OnlineStore.Repositories
             _context = context;
         }
 
-
         public Racket? Get(Guid id)
         {
             string s_id = id.ToString().ToUpper();
             var x =  _context.Rackets.Find(id);
-            Console.WriteLine(x == null ? "null" : x.RName);
+            if (x == null)
+            {
+                return null;
+            }
             
+            x.Id = new Guid(x.Id.ToString().ToUpper());
             return x;
         }
 
